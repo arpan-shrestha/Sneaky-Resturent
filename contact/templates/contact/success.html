@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}
+Sneaky Restaurant - Contact
+{% endblock %}
+{% load static %}
+{% load bootstrap4 %}
+{% block body %}
+
+<!--================Hero Banner Section start =================-->
+<section class="hero-banner hero-banner-sm">
+  <div class="hero-wrapper">
+    <div class="hero-left">
+      <h4 class="hero-title">Email has been Sent</h4>
+      <h4>Thank you for your mail. we will be back to you shortly</h4>
+      <ul class="hero-info d-none d-md-block">
+        <li>
+          <img src="{% static 'site_static/img/banner/fas-service-icon.png' %}" alt="">
+          <h4>Fast Service</h4>
+        </li>
+        <li>
+          <img src="{% static 'site_static/img/banner/fresh-food-icon.png' %}" alt="">
+          <h4>Fresh Food</h4>
+        </li>
+        <li>
+          <img src="{% static 'site_static/img/banner/support-icon.png' %}" alt="">
+          <h4>24/7 Support</h4>
+        </li>
+      </ul>
+    </div>
+    <div class="hero-right">
+      <div class="owl-carousel owl-theme w-100 hero-carousel">
+        <div class="hero-carousel-item">
+          <img class="img-fluid" src="{% static 'site_static/img/banner/hero-banner-sm.png' %}" alt="">
+        </div>
+      </div>
+    </div>
+    <ul class="social-icons d-none d-lg-block">
+      <li><a href="#"><i class="ti-facebook"></i></a></li>
+      <li><a href="#"><i class="ti-twitter"></i></a></li>
+      <li><a href="#"><i class="ti-instagram"></i></a></li>
+    </ul>
+  </div>
+</section>
+<!--================Hero Banner Section end =================-->
+
+
+
+{% endblock body %}

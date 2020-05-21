@@ -1,0 +1,199 @@
+{% extends 'base.html' %}
+{% block title %}
+Sneaky Restaurant - Blog
+{% endblock %}
+{% load bootstrap4 %}
+{% load static %}
+{% block body %}
+
+  <!--================Hero Banner Section start =================-->
+  <section class="hero-banner hero-banner-sm">
+    <div class="hero-wrapper">
+      <div class="hero-left">
+        <h1 class="hero-title">Blog</h1>
+        <p>From  set together our divided own saw divided the form god <br class="d-none d-xl-block"> seas moveth you will fifth under replenish end</p>
+        <ul class="hero-info d-none d-md-block">
+          <li>
+            <img src="{% static 'site_static/img/banner/fas-service-icon.png' %}" alt="">
+            <h4>Fast Service</h4>
+          </li>
+          <li>
+            <img src="{% static 'site_static/img/banner/fresh-food-icon.png' %}" alt="">
+            <h4>Fresh Food</h4>
+          </li>
+          <li>
+            <img src="{% static 'site_static/img/banner/support-icon.png' %}" alt="">
+            <h4>24/7 Support</h4>
+          </li>
+        </ul>
+      </div>
+      <div class="hero-right">
+        <div class="owl-carousel owl-theme w-100 hero-carousel">
+          <div class="hero-carousel-item">
+            <img class="img-fluid" src="{% static 'site_static/img/banner/hero-banner-sm.png' %}" alt="">
+          </div>
+        </div>
+      </div>
+      <ul class="social-icons d-none d-lg-block">
+        <li><a href="#"><i class="ti-facebook"></i></a></li>
+        <li><a href="#"><i class="ti-twitter"></i></a></li>
+        <li><a href="#"><i class="ti-instagram"></i></a></li>
+      </ul>
+    </div>
+  </section>
+  <!--================Hero Banner Section end =================-->
+
+
+  <!--================Blog Area =================-->
+	<section class="blog_area single-post-area section-margin">
+			<div class="container">
+					<div class="row">
+							<div class="col-lg-8 posts-list">
+									<div class="single-post">
+													<div class="feature-img">
+															<img class="img-fluid" src="{{post_detail.image.url}}" alt="">
+													</div>
+											<div class="blog_details">
+													<h2>{{post.title}}</h2>
+                          <ul class="blog-info-link mt-3 mb-4">
+                            <li><a href="#"><i class="ti-user"></i>{{post_detail.category}}</a></li>
+                            </ul>
+													<p class="excert">
+														{{post_detail.content}}
+
+													</p>
+                          <div class="quote-wrapper">
+                            <div class="quotes">
+                                {{post_detail.quote}}
+                            </div>
+                          </div>
+                     
+                        
+											</div>
+                  </div>
+                  <div class="navigation-top">
+                    <div class="d-sm-flex justify-content-between text-center">
+                      <div class="col-sm-4 text-center my-2 my-sm-0">
+                      </div>
+                      <ul class="social-icons">
+                        <li><a href="#"><i class="ti-facebook"></i></a></li>
+                        <li><a href="#"><i class="ti-twitter-alt"></i></a></li>
+                        <li><a href="#"><i class="ti-dribbble"></i></a></li>
+                        <li><a href="#"><i class="ti-wordpress"></i></a></li>
+                      </ul>
+                    </div>
+
+
+                  </div>
+                  
+                  
+                  <div class="blog-author">
+                    <div class="media align-items-center">
+                      <img src="{{post_detail.auther_pic.url}}" alt="">
+                      <div class="media-body">
+                        <a href="#">
+                          <h4>{{post_detail.auther}}</h4>
+                        </a>
+                        <p>{{post_detail.quote}}</p>
+                      </div>
+                    </div>
+                  </div>
+
+									<div class="comments-area">
+											<h4>Comments</h4>
+                      {% for comment in comments %}
+											<div class="comment-list">
+                      
+                        <div class="single-comment justify-content-between d-flex">
+                          <div class="user justify-content-between d-flex">
+                              <div class="thumb">
+                                  <img src="img/blog/c1.png" alt="">
+                              </div>
+                              <div class="desc">
+                                  <p class="comment">
+                                    {{comment.content}} 
+                                  </p>
+
+                                  <div class="d-flex justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                      <h5>
+                                        <a href="#">{{comment.user}}</a>
+                                      </h5>
+                                      <p class="date">{{comment.created}} </p>
+                                    </div>
+
+
+                                  </div>
+                                  
+                              </div>
+                          </div>
+                      </div>
+											</div>
+                    {% endfor %}
+
+									</div>
+									<div class="comment-form">
+											<h4>Leave a Reply</h4>
+                        <form method="POST" class="p-5 bg-light">
+                                {% csrf_token %}
+                                {% bootstrap_form comment_form %}
+                                {% buttons %}
+                                    <button type="submit" class="btn btn-primary">Leave a Comment</button>
+                                {% endbuttons %}
+                        </form>
+									</div>
+							</div>
+							<div class="col-lg-4">
+                <div class="blog_right_sidebar">
+                      <aside class="single_sidebar_widget search_widget">
+                          <form action="#">
+                            <div class="form-group">
+                              <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Search Keyword">
+                                <div class="input-group-append">
+                                  <button class="btn" type="button"><i class="ti-search"></i></button>
+                                </div>
+                              </div>
+                            </div>
+                            <button class="button rounded-0 primary-bg text-white w-100" type="submit">Search</button>
+                          </form>
+                      </aside>
+
+                      <aside class="single_sidebar_widget post_category_widget">
+                        <h4 class="widget_title">Category</h4>
+                        <ul class="list cat-list">
+                        {%for category in category%}
+                            <li>
+                                <a href="{% url 'blog:post_by_category' category %}" class="d-flex">
+                                    <p>{{category}}</p>
+                                </a>
+                            </li>
+                          {% endfor %} 
+
+                      </aside>
+
+
+                      <aside class="single_sidebar_widget tag_cloud_widget">
+                          <h4 class="widget_title">Tag Clouds</h4>
+                          <ul class="list">
+                          {%for tag in all_tags%}
+                              <li>
+                                  <a href="{% url 'blog:post_by_tag' tag %}">{{tag}}</a>
+                              </li>
+                          {% endfor %}
+                      </aside>
+
+
+
+
+
+
+                  </div>
+							</div>
+					</div>
+			</div>
+	</section>
+	<!--================Blog Area =================-->
+
+
+{% endblock body %}
